@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <table class="table">
+            <table class="table table-responsive">
                 <thead>
                     <tr>
                         <th>Titulo</th>
@@ -47,11 +47,11 @@
                             <td>
                                 <a href="editTask.php?id=<?php echo $row['id'] ?> " 
                                 style="font-size: 2em"> 
-                                    ✏
+                                    <i class="btn btn-sm btn-warning fas fa-edit"></i>
                                 </a>
                                 <a href="deleteTask.php?id=<?php echo $row['id'] ?> " 
                                 style="font-size: 2em" >
-                                    ✖
+                                    <i class="btn btn-sm btn-danger fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
