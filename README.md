@@ -1,4 +1,4 @@
-# crud_php
+# crud php y mysql en docker
 
 ## cloname
 
@@ -6,26 +6,26 @@
 git clone https://github.com/AlanCienega/crud_php.git
 ```
 
-## crear base de datos
+## crear archivo de variables de entorno
 
 ```
-create database crud_php;
+cp .env.example .env
 ```
 
-## crear tabla
+## levanta el ambiente de trabajo
 
 ```
-create table tasks(
-   id INT NOT NULL AUTO_INCREMENT,
-   title VARCHAR(50) NOT NULL,
-   description VARCHAR(100) NOT NULL,
-   created_at DATETIME NULL DEFAULT NULL,
-   PRIMARY KEY ( id )
-);
+docker compose up
 ```
 
-## inicia un servidor dentro del directorio del proyecto
+por alguna razon, tienes que entrar al contenedor y hacer ping a db, pero eso se arreglara en el siguiente commit. Primero entras a el contenedor web.
 
 ```
-php -S localhost:8000 -t .
+docker exec -it crud_php-web-1 /bin/bash
+```
+
+luego haces ping, lo detienes con ctrl+c y abres localhost en tu navegador.
+
+```
+ping db
 ```

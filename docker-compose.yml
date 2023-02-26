@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  web:
+    # Nombre de la imagen que se construirá a partir del Dockerfile en el directorio actual
+    build: .
+    # Mapeo de puertos (puerto de la aplicación : puerto del contenedor)
+    ports:
+      - "80:80"
+    # Nombres de los contenedores que utilizarán este contenedor
+    links:
+      - db
+  db:
+    image: mysql:8.0
+    # Variables de entorno para la base de datos
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    # Volumen para persistir los datos de la base de datos
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+# Definir el volumen para la base de datos
+volumes:
+  db-data:
